@@ -17,3 +17,12 @@ variable "private_subnet_cidr" {
 variable "private_subnet_az" {
   default = "us-east-1b"
 }
+
+variable "admin_cidr" {
+  description = "Your IP address in CIDR format for SSH access, for example 203.0.113.10/32"
+  default     = "0.0.0.0/0"
+}
+
+variable "instance_type" {
+  default = "t2.micro"
+}
