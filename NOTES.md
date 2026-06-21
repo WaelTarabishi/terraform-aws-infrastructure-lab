@@ -45,6 +45,14 @@ This file is for quick reminders about what the infrastructure does.
 3. Run `terraform init -migrate-state`.
 4. After that, Terraform will store and lock state remotely.
 
+## Terraform Init Flags
+
+- `terraform init -migrate-state` moves existing local state into the new backend.
+- Use it when you already have a state file and you are switching from local to remote state.
+- `terraform init -reconfigure` tells Terraform to forget the previous backend settings and use the backend config again.
+- Use `-reconfigure` when backend settings changed and you do not want Terraform to copy old state automatically.
+- In this project, `-migrate-state` is the correct choice when moving your current local state to S3.
+
 ## Naming Reminder
 
 - Use snake_case for Terraform resource names and variables.
