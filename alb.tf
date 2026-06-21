@@ -67,15 +67,3 @@ resource "aws_lb_listener" "http" {
     target_group_arn = aws_lb_target_group.app.arn
   }
 }
-
-resource "aws_lb_target_group_attachment" "public_web" {
-  target_group_arn = aws_lb_target_group.app.arn
-  target_id        = aws_instance.public_web.id
-  port             = 80
-}
-
-resource "aws_lb_target_group_attachment" "private_web" {
-  target_group_arn = aws_lb_target_group.app.arn
-  target_id        = aws_instance.private_web.id
-  port             = 80
-}

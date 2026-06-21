@@ -7,14 +7,13 @@ This project builds a small AWS network and compute setup with Terraform.
 - a VPC
 - one public subnet
 - a second public subnet for the load balancer
-- one private subnet
+- two private subnets for the application layer
 - an Internet Gateway
 - a NAT Gateway for private subnet outbound access
 - route tables and associations
-- one EC2 instance in the public subnet
-- one EC2 instance in the private subnet
 - an Application Load Balancer
 - a target group and listener
+- an Auto Scaling Group for private app instances
 - an S3 bucket
 - an IAM role and instance profile so EC2 can access S3
 - a security group for web instances
@@ -26,6 +25,7 @@ This project builds a small AWS network and compute setup with Terraform.
 - `variables.tf`: input values for the infrastructure
 - `vpc.tf`: VPC, subnets, routing, IGW, NAT
 - `alb.tf`: application load balancer and target group
+- `autoscaling.tf`: launch template and Auto Scaling Group
 - `security_groups.tf`: security group rules
 - `ec2.tf`: EC2 instances
 - `s3.tf`: S3 bucket and IAM access for EC2
@@ -62,5 +62,5 @@ terraform destroy
 
 - The public subnet is used for internet-facing resources and the NAT gateway.
 - The load balancer uses both public subnets for high availability.
-- The private subnet uses the NAT gateway for outbound internet access.
+- The private subnets use the NAT gateway for outbound internet access.
 - EC2 permissions to S3 come from IAM roles, not from the VPC itself.
