@@ -1,6 +1,6 @@
 # Terraform AWS Lab
 
-This project builds a small AWS network and compute setup with Terraform.
+This project builds a multi-AZ AWS network and application stack with Terraform.
 
 ## Architecture
 
@@ -20,6 +20,7 @@ This project builds a small AWS network and compute setup with Terraform.
 - an Auto Scaling Group for private app instances
 - an S3 bucket
 - an IAM role and instance profile so EC2 can access S3
+- CloudWatch CPU alarm with SNS alert delivery
 - a security group for web instances
 
 ## Project Layout
@@ -31,8 +32,8 @@ This project builds a small AWS network and compute setup with Terraform.
 - `alb.tf`: application load balancer and target group
 - `autoscaling.tf`: launch template and Auto Scaling Group
 - `security_groups.tf`: security group rules
-- `ec2.tf`: EC2 instances
 - `s3.tf`: S3 bucket and IAM access for EC2
+- `monitoring.tf`: CloudWatch alarm and SNS alerts
 - `outputs.tf`: useful IDs after apply
 - `bootstrap/`: one-time setup for S3 backend and DynamoDB locking
 
@@ -71,6 +72,7 @@ terraform destroy
 - Use CloudWatch alarms for monitoring and route alerts through SNS.
 - Use a Slack bridge or webhook only for notifications, not for storing secrets.
 - Prefer private subnets for app servers and keep only the load balancer public.
+- Use Auto Scaling Groups instead of standalone EC2 instances for app workloads.
 
 ## Notes
 

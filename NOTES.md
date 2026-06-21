@@ -73,3 +73,31 @@ This file is for quick reminders about what the infrastructure does.
 
 - Use snake_case for Terraform resource names and variables.
 - Prefer clear names like `main`, `public`, and `private` over vague names like `thing` or `myVpc`.
+
+## Recommended Build Order
+
+1. Create the VPC first.
+2. Create the public and private subnets.
+3. Create the Internet Gateway.
+4. Create the NAT Gateway in a public subnet.
+5. Create the route tables.
+6. Associate the route tables with the subnets.
+7. Create security groups.
+8. Create IAM role, instance profile, and S3 permissions for EC2.
+9. Create the launch template for the app instances.1
+10. Create the target group for the ALB.
+11. Create the Application Load Balancer in the public subnets.
+12. Create the listener on the ALB.
+13. Create the Auto Scaling Group in the private subnets and attach it to the target group.
+14. Create the CloudWatch alarm.
+15. Create the SNS topic subscription for alert delivery.
+16. Bootstrap remote state with S3 and DynamoDB before using the main backend.
+
+## Why This Order Works
+
+- Networking must exist before instances and load balancers can attach to it.
+- Security groups and IAM must exist before EC2 can launch cleanly.
+- The ALB needs a target group before it can forward traffic.
+- The Auto Scaling Group needs the launch template, subnets, and target group already in place.
+- Monitoring comes after the app layer exists, because it needs real targets to watch.
+- Remote state bootstrap is separate because the backend bucket and lock table must already exist before the main Terraform stack can use them.
