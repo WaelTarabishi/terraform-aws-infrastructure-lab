@@ -21,6 +21,15 @@ resource "aws_instance" "public_web" {
   vpc_security_group_ids       = [aws_security_group.web.id]
   associate_public_ip_address = true
   iam_instance_profile        = aws_iam_instance_profile.ec2_s3_access.name
+  user_data = <<-EOF
+              #!/bin/bash
+              dnf -y install httpd
+              systemctl enable httpd
+              systemctl start httpd
+              cat <<'HTML' > /var/www/html/index.html
+              <h1>Public Web Instance</h1>
+              HTML
+              EOF
 
   tags = {
     Name        = "public-web-instance"
@@ -35,6 +44,15 @@ resource "aws_instance" "private_web" {
   subnet_id             = aws_subnet.private_subnet_a.id
   vpc_security_group_ids = [aws_security_group.web.id]
   iam_instance_profile  = aws_iam_instance_profile.ec2_s3_access.name
+  user_data = <<-EOF
+              #!/bin/bash
+              dnf -y install httpd
+              systemctl enable httpd
+              systemctl start httpd
+              cat <<'HTML' > /var/www/html/index.html
+              <h1>Private Web Instance</h1>
+              HTML
+              EOF
 
   tags = {
     Name        = "private-web-instance"

@@ -25,3 +25,7 @@ output "private_instance_id" {
 output "s3_bucket_name" {
   value = aws_s3_bucket.app.bucket
 }
+
+output "alb_dns_name" {
+  value = aws_lb.app.dns_name
+}

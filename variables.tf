@@ -10,6 +10,14 @@ variable "public_subnet_az" {
   default = "us-east-1a"
 }
 
+variable "public_subnet_b_cidr" {
+  default = "10.0.3.0/24"
+}
+
+variable "public_subnet_b_az" {
+  default = "us-east-1b"
+}
+
 variable "private_subnet_cidr" {
   default = "10.0.2.0/24"
 }
