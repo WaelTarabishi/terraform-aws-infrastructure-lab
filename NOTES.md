@@ -66,6 +66,8 @@ This file is for quick reminders about what the infrastructure does.
 - `ok_actions` are triggered when the alarm returns to normal.
 - Using the Auto Scaling Group name as a dimension makes the alarm track the app layer instead of one EC2 instance.
 - SNS is often used as the alert destination, then Slack can be added later through a Slack integration or webhook bridge.
+- A raw SNS HTTPS subscription can point at a Slack webhook URL, but SNS message formatting may not be ideal for Slack without a transform layer.
+- If the Slack message format looks bad, the usual fix is a small Lambda function that rewrites the SNS payload before posting to Slack.
 
 ## Naming Reminder
 

@@ -32,3 +32,9 @@ resource "aws_cloudwatch_metric_alarm" "high_cpu" {
     ManagedBy   = "Terraform"
   }
 }
+
+resource "aws_sns_topic_subscription" "slack_webhook" {
+  topic_arn = aws_sns_topic.alerts.arn
+  protocol  = "https"
+  endpoint  = var.slack_webhook_url
+}

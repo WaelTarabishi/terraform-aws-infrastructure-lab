@@ -52,3 +52,8 @@ variable "cpu_alarm_threshold" {
   description = "Average CPU percentage that triggers the CloudWatch alarm"
   default     = 50
 }
+
+variable "slack_webhook_url" {
+  description = "Slack incoming webhook URL for alert delivery"
+  default     = "https://hooks.slack.com/services/REPLACE/ME/LATER"
+}
