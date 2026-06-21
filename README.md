@@ -2,6 +2,10 @@
 
 This project builds a small AWS network and compute setup with Terraform.
 
+## Architecture
+
+![AWS architecture diagram](architecture.png)
+
 ## What It Creates
 
 - a VPC
@@ -57,6 +61,16 @@ terraform plan
 terraform apply
 terraform destroy
 ```
+
+## Best Practices
+
+- Keep Terraform code in Git, but keep secrets out of Git.
+- Store real secret values in local `terraform.tfvars`, environment variables, or a secret manager.
+- Mark sensitive variables as `sensitive = true` in Terraform.
+- Use S3 + DynamoDB for remote state when working in teams or when you want durable state.
+- Use CloudWatch alarms for monitoring and route alerts through SNS.
+- Use a Slack bridge or webhook only for notifications, not for storing secrets.
+- Prefer private subnets for app servers and keep only the load balancer public.
 
 ## Notes
 
