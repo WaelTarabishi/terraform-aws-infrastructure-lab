@@ -20,6 +20,7 @@ resource "aws_instance" "public_web" {
   subnet_id                   = aws_subnet.public_subnet_a.id
   vpc_security_group_ids       = [aws_security_group.web.id]
   associate_public_ip_address = true
+  iam_instance_profile        = aws_iam_instance_profile.ec2_s3_access.name
 
   tags = {
     Name        = "public-web-instance"
@@ -33,6 +34,7 @@ resource "aws_instance" "private_web" {
   instance_type         = var.instance_type
   subnet_id             = aws_subnet.private_subnet_a.id
   vpc_security_group_ids = [aws_security_group.web.id]
+  iam_instance_profile  = aws_iam_instance_profile.ec2_s3_access.name
 
   tags = {
     Name        = "private-web-instance"

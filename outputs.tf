@@ -21,3 +21,7 @@ output "public_instance_id" {
 output "private_instance_id" {
   value = aws_instance.private_web.id
 }
+
+output "s3_bucket_name" {
+  value = aws_s3_bucket.app.bucket
+}

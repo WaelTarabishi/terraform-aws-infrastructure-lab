@@ -26,3 +26,8 @@ variable "admin_cidr" {
 variable "instance_type" {
   default = "t2.micro"
 }
+
+variable "s3_bucket_name" {
+  description = "Globally unique S3 bucket name"
+  default     = "terraform-aws-waeltarabishi-demo-bucket"
+}
