@@ -33,3 +33,7 @@ output "alb_dns_name" {
 output "app_asg_name" {
   value = aws_autoscaling_group.app.name
 }
+
+output "alerts_topic_arn" {
+  value = aws_sns_topic.alerts.arn
+}

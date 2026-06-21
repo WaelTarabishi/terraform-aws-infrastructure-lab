@@ -53,6 +53,20 @@ This file is for quick reminders about what the infrastructure does.
 - Use `-reconfigure` when backend settings changed and you do not want Terraform to copy old state automatically.
 - In this project, `-migrate-state` is the correct choice when moving your current local state to S3.
 
+## CloudWatch Alarm Notes
+
+- `namespace` tells CloudWatch which AWS service metric to read, such as `AWS/EC2`.
+- `metric_name` is the specific metric being watched, such as `CPUUtilization`.
+- `threshold` is the limit that triggers the alarm, such as `50` percent CPU.
+- `comparison_operator` controls how the metric is compared to the threshold, such as `GreaterThanThreshold`.
+- `period` is the time window for each check, measured in seconds. `300` means 5 minutes.
+- `evaluation_periods` is how many consecutive periods must breach the threshold before the alarm fires.
+- `treat_missing_data` controls what happens when CloudWatch has no data. `notBreaching` avoids false alarms from gaps.
+- `alarm_actions` are triggered when the alarm enters the `ALARM` state.
+- `ok_actions` are triggered when the alarm returns to normal.
+- Using the Auto Scaling Group name as a dimension makes the alarm track the app layer instead of one EC2 instance.
+- SNS is often used as the alert destination, then Slack can be added later through a Slack integration or webhook bridge.
+
 ## Naming Reminder
 
 - Use snake_case for Terraform resource names and variables.

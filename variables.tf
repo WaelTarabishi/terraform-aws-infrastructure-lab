@@ -47,3 +47,8 @@ variable "s3_bucket_name" {
   description = "Globally unique S3 bucket name"
   default     = "terraform-aws-waeltarabishi-demo-bucket"
 }
+
+variable "cpu_alarm_threshold" {
+  description = "Average CPU percentage that triggers the CloudWatch alarm"
+  default     = 50
+}
