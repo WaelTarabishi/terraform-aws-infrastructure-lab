@@ -14,13 +14,6 @@ output "nat_gateway_id" {
   value = aws_nat_gateway.main.id
 }
 
-output "public_instance_id" {
-  value = aws_instance.public_web.id
-}
-
-output "private_instance_id" {
-  value = aws_instance.private_web.id
-}
 
 output "s3_bucket_name" {
   value = aws_s3_bucket.app.bucket

@@ -1,59 +1,56 @@
 variable "vpc_cidr_block" {
-  default = "10.0.0.0/16"
+  description = "CIDR block for the main VPC"
 }
 
 variable "public_subnet_cidr" {
-  default = "10.0.1.0/24"
+  description = "CIDR block for the first public subnet"
 }
 
 variable "public_subnet_az" {
-  default = "us-east-1a"
+  description = "Availability Zone for the first public subnet"
 }
 
 variable "public_subnet_b_cidr" {
-  default = "10.0.3.0/24"
+  description = "CIDR block for the second public subnet"
 }
 
 variable "public_subnet_b_az" {
-  default = "us-east-1b"
+  description = "Availability Zone for the second public subnet"
 }
 
 variable "private_subnet_cidr" {
-  default = "10.0.2.0/24"
+  description = "CIDR block for the first private subnet"
 }
 
 variable "private_subnet_az" {
-  default = "us-east-1b"
+  description = "Availability Zone for the first private subnet"
 }
 
 variable "private_subnet_b_cidr" {
-  default = "10.0.4.0/24"
+  description = "CIDR block for the second private subnet"
 }
 
 variable "private_subnet_b_az" {
-  default = "us-east-1c"
+  description = "Availability Zone for the second private subnet"
 }
 
 variable "admin_cidr" {
   description = "Your IP address in CIDR format for SSH access, for example 203.0.113.10/32"
-  default     = "0.0.0.0/0"
 }
 
 variable "instance_type" {
-  default = "t2.micro"
+  description = "EC2 instance type for the application instances"
 }
 
 variable "s3_bucket_name" {
   description = "Globally unique S3 bucket name"
-  default     = "terraform-aws-waeltarabishi-demo-bucket"
 }
 
 variable "cpu_alarm_threshold" {
   description = "Average CPU percentage that triggers the CloudWatch alarm"
-  default     = 50
 }
 
 variable "slack_webhook_url" {
   description = "Slack incoming webhook URL for alert delivery"
-  default     = "https://hooks.slack.com/services/REPLACE/ME/LATER"
+  sensitive   = true
 }
